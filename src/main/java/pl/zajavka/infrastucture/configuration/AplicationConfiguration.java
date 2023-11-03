@@ -1,0 +1,11 @@
+package pl.zajavka.infrastucture.configuration;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
+@Configuration onfiguration
+@Import({DatabaseConfiguration.class})
+@ComponentScan(basePackages = "pl.zajavka")
+public class AplicationConfiguration {
+}
