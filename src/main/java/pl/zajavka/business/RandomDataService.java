@@ -14,18 +14,26 @@ public class RandomDataService {
     //klasa odpowiedzialan za przygotowanie danych
     private final RandomDataPreparationService randomDataPreparationService;
     //5 repositorów odpowiedzialne za to, aby z każdą tabelą coś robić w bazie danych
-    private final CustomerRepository customerRepository;
-    private final OpinionRepository opinionRepository;
-    private final ProducerRepository producerRepository;
-    private final ProductRepository productRepository;
-    private final PurchaseRepository purchaseRepository;
+//    private final CustomerRepository customerRepository;
+//    private final OpinionRepository opinionRepository;
+//    private final ProducerRepository producerRepository;
+//    private final ProductRepository productRepository;
+//    private final PurchaseRepository purchaseRepository;
 
     public void create() {
-        Customer customer = customerRepository.create(randomDataPreparationService.createCustomer());
-        Opinion opinion = opinionRepository.create(randomDataPreparationService.createOpinion());
-        Producer producer = producerRepository.create(randomDataPreparationService.createProducer());
-        Product product = productRepository.create(randomDataPreparationService.createProduct());
-        Purchase purchase = purchaseRepository.create(randomDataPreparationService.createPurchase());
+//        Customer customer = customerRepository.create(randomDataPreparationService.createCustomer());
+//        Producer producer = producerRepository.create(randomDataPreparationService.createProducer());
+//        Product product = productRepository.create(randomDataPreparationService.createProduct(producer));
+//        Opinion opinion = opinionRepository.create(randomDataPreparationService.createOpinion(customer,product));
+//        Purchase purchase = purchaseRepository.create(randomDataPreparationService.createPurchase(customer,product));
+
+        Customer customer = randomDataPreparationService.createCustomer();
+        Producer producer = randomDataPreparationService.createProducer();
+        Product product =randomDataPreparationService.createProduct(producer);
+        Opinion opinion =randomDataPreparationService.createOpinion(customer,product);
+        Purchase purchase = randomDataPreparationService.createPurchase(customer,product);
+
+
 
         log.debug("Random customer created: [{}]",customer);
         log.debug("Random opinion created: [{}]",opinion);

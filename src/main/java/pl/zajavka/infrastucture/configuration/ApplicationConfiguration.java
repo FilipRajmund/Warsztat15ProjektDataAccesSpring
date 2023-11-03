@@ -7,5 +7,5 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @Import({DatabaseConfiguration.class})
 @ComponentScan(basePackages = "pl.zajavka")
-public class AplicationConfiguration {
+public class ApplicationConfiguration {
 }
