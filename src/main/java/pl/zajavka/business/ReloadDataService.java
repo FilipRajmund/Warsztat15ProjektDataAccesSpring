@@ -16,12 +16,12 @@ public class ReloadDataService {
     private final RandomDataService randomDataService;
 
     @Transactional
-    public void loadRandomData(){
+    public void loadRandomData() {
         customerService.removeAll();
         productService.removeAll();
         for (int i = 0; i < 15; i++) {
 
-        randomDataService.create();
+            randomDataService.create();
         }
     }
 
