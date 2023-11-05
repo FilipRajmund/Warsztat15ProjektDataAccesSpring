@@ -9,18 +9,22 @@ import org.springframework.stereotype.Repository;
 import pl.zajavka.domain.Opinion;
 import pl.zajavka.infrastucture.configuration.DatabaseConfiguration;
 
+import java.util.Map;
+
 @Slf4j
 @Repository
 @AllArgsConstructor
 public class OpinionRepository implements pl.zajavka.business.OpinionRepository {
     private final SimpleDriverDataSource simpleDriverDataSource;
+    private final DatabaseMapper databaseMapper;
     @Override
     public Opinion create(Opinion opinion) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(simpleDriverDataSource);
         jdbcInsert.withTableName(DatabaseConfiguration.OPINION_TABLE);
         jdbcInsert.usingGeneratedKeyColumns(DatabaseConfiguration.PURCHASE_TABLE_PKEY.toLowerCase());
 
-        Number opinionId = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(opinion));
+        Map<String, ?> params = databaseMapper.mapOpinion(opinion);
+        Number opinionId = jdbcInsert.executeAndReturnKey(params);
         return opinion.withId((long) opinionId.intValue());
     }
 }

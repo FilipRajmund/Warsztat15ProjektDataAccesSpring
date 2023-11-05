@@ -9,19 +9,24 @@ import org.springframework.stereotype.Repository;
 import pl.zajavka.domain.Product;
 import pl.zajavka.infrastucture.configuration.DatabaseConfiguration;
 
+import java.util.Map;
+
 
 @Slf4j
 @Repository
 @AllArgsConstructor
 public class ProductRepository implements pl.zajavka.business.ProductRepository {
     private final SimpleDriverDataSource simpleDriverDataSource;
+    private final DatabaseMapper databaseMapper;
     @Override
     public Product create(Product product) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(simpleDriverDataSource);
         jdbcInsert.withTableName(DatabaseConfiguration.PRODUCT_TABLE);
         jdbcInsert.usingGeneratedKeyColumns(DatabaseConfiguration.PURCHASE_TABLE_PKEY.toLowerCase());
 
-        Number productId = jdbcInsert.executeAndReturnKey(new BeanPropertySqlParameterSource(product));
+        Map<String, ?> params = databaseMapper.mapProduct(product);
+
+        Number productId = jdbcInsert.executeAndReturnKey(params);
         return product.withId((long) productId.intValue());
     }
 }
