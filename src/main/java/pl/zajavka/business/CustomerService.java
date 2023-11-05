@@ -24,4 +24,10 @@ public class CustomerService {
         purchaseService.removeAll();
         customerRepository.removeAll();
     }
+
+    public Customer find(String email) {
+        return customerRepository.find(email)
+                .orElseThrow(()->new RuntimeException("Customer with email: [%s] is missing".formatted(email)));
+    }
+
 }

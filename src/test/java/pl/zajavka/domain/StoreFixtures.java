@@ -23,14 +23,13 @@ public class StoreFixtures {
     public static Producer someProducer() {
         return Producer.builder()
                 //definiuje baza danych nie potrzebne te dane .id()
-                .producerName("Fifi")
+                .producerName("Faf")
                 .address("someAddress")
                 .build();
     }
 
     public static Product someProduct1(Producer producer) {
         return Product.builder()
-                //definiuje baza danych nie potrzebne te dane .id()
                 .productCode("123456")
                 .productName("fiflak")
                 .productPrice(BigDecimal.valueOf(162.2))
@@ -42,7 +41,6 @@ public class StoreFixtures {
 
     public static Product someProduct2(Producer producer) {
         return Product.builder()
-                //definiuje baza danych nie potrzebne te dane .id()
                 .productCode("586242")
                 .productName("fafik")
                 .productPrice(BigDecimal.valueOf(162.2))
@@ -54,7 +52,6 @@ public class StoreFixtures {
 
     public static Purchase somePurchase(Customer customer, Product product) {
         return Purchase.builder()
-                //definiuje baza danych nie potrzebne te dane .id()
                 .customer(customer)
                 .product(product)
                 .quantity(2)
@@ -64,7 +61,6 @@ public class StoreFixtures {
 
     public static Opinion someOpinion(Customer customer, Product product) {
         return Opinion.builder()
-                //definiuje baza danych nie potrzebne te dane .id()
                 .customer(customer)
                 .product(product)
                 .stars((byte) 4)
