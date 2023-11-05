@@ -19,7 +19,10 @@ public class ReloadDataService {
     public void loadRandomData(){
         customerService.removeAll();
         productService.removeAll();
+        for (int i = 0; i < 15; i++) {
+
         randomDataService.create();
+        }
     }
 
 }
